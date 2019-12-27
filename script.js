@@ -19,4 +19,27 @@ function mousePressed() {
   paths.push(current);
 }
 
-function draw() {}
+function draw() {
+  noFill();
+
+  if (mouseIsPressed) {
+    const point = {
+      x: mouseX,
+      y: mouseY,
+      color: color.value,
+      weight: weight.value
+    };
+
+    current.push(point);
+  }
+
+  paths.forEach(path => {
+    beginShape();
+    path.forEach(point => {
+      stroke(point.color);
+      strokeWeight(point.weight);
+      vertex(point.x, point.y);
+    });
+    endShape();
+  });
+}
